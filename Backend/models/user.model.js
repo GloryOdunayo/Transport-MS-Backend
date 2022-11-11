@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs")
-const driverSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     firstname: {type:String,required:true},
     lastname:{type:String,required:true},
     email:{type:String,required:true,unique:true},
@@ -8,7 +8,7 @@ const driverSchema = mongoose.Schema({
     image:{type:String}
 })
 let saltRound = 10
-driverSchema.pre("save",function(next){
+userSchema.pre("save",function(next){
     bcrypt.hash(this.password,saltRound,(err,hashedPassword)=>{
         if(err){
             console.log(err)
@@ -18,7 +18,7 @@ driverSchema.pre("save",function(next){
         }
     })
 })
-driverSchema.methods.validatePassword = function(password,callback){
+userSchema.methods.validatePassword = function(password,callback){
     bcrypt.compare(password,this.password,(err,same)=>{
         if(!err){
             callback(err,same)
@@ -27,5 +27,5 @@ driverSchema.methods.validatePassword = function(password,callback){
         }
     })
 }
-const userModel = mongoose.model("driver_collection",driverSchema)
+const userModel = mongoose.model("driver_collection",userSchema)
 module.exports = userModel;
