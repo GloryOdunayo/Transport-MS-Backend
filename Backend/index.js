@@ -11,10 +11,8 @@ mongoose.connect(URI,(err)=>{
     console.log("Mongoose has connected successfully")
 })
 const PORT = process.env.PORT
-const userRouter = require("./routes/user.route")
-const adminRouter = require("./routes/admin.route")
-app.use("/user",userRouter);
-app.use("/admin",adminRouter);
+const driverRouter = require ("./routes/driver.route")
+app.use("/driver",driverRouter);
 app.use(express.static("build"))
 app.get("/*",(req,res)=>{
     res.sendFile(__dirname+"/build/index.html")
