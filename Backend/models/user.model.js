@@ -27,5 +27,5 @@ userSchema.methods.validatePassword = function(password,callback){
         }
     })
 }
-const userModel = mongoose.model("driver_collection",userSchema)
+const userModel = mongoose.model("passenger_collection",userSchema)
 module.exports = userModel;

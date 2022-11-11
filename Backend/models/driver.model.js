@@ -27,5 +27,5 @@ driverSchema.methods.validatePassword = function(password,callback){
         }
     })
 }
-const userModel = mongoose.model("driver_collection",driverSchema)
-module.exports = userModel;
+const driverModel = mongoose.model("driver_collection",driverSchema)
+module.exports = driverModel;
